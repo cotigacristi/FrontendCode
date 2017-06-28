@@ -40,7 +40,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    livereload: 35729
+                    livereload: 2
                 },
                 files: [
                     'src/main/webapp/**/*.html',
