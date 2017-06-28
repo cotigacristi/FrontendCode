@@ -6,6 +6,10 @@ app.controller('MenuController', ['$scope', function($scope){
         {
             label: "OtherScope",
             url: "view/childscope.html"
+        },
+        {
+            label: "Shopping Cart",
+            url: "view/shoppingcart.html"
         }
     ];
 }
