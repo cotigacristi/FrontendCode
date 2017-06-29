@@ -35,6 +35,7 @@ hrApp.controller('UserController', ['$scope','$location','userActionService', fu
             age: $scope.ageVar
         }
         userActionService.addUserToList(userItem);
+        alert("S-a adaugat cu suces o intrare in lista!");
     }
 
     $scope.toggleDescriptionShow = function() {

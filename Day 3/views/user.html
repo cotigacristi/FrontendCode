@@ -65,7 +65,7 @@
             </div>
             <div class="col-md-7">
                 <div class="container">
-                    <button class="btn btn-default" ng-click="toggleDescriptionShow()">Show/Hide User List</button>
+                    <a class="btn btn-primary btn-lg" role="button" ng-click="toggleDescriptionShow()">Show/Hide Table</a>
                 </div>
             </div>
         </div>
@@ -74,13 +74,11 @@
     <div class="container">
         <div class="jumbotron">
             <h1>{{title}}</h1>
-            <p class="lead" ng-show="showList">
-            <table class="table table-striped" role="menu">
+            <ul ng-if="showList" class="table table-striped" role="menu">
                 <li ng-repeat="action in userList">
                     {{action.firstName}} {{action.lastName}} {{action.CNP}}
                 </li>
-            </table>
-            </p>
+            </ul>
         </div>
     </div>
 </div>
