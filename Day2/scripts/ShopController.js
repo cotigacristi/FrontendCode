@@ -44,13 +44,14 @@ app.controller('ShopController', ['$scope', function($scope){
         for(var each in $scope.productsList)
             if($scope.productList[each].id==idProdus)
                 elem=$scope.productList[each];
-        $scope.shopList.push(elem);
+        $scope.shopList.push(new shopList(elem.label, elem.id, elem.img, elem.price));
     };
     $scope.getProduct = function(idProdus)
     {
         for(var each in $scope.productsList)
             if($scope.productsList[each].id==idProdus)
-                addProduct($scope.productsList[each]);
+                $scope.addProduct($scope.productsList[each]);
+
     };
 
     $scope.removeProduct = function(idProdus)
