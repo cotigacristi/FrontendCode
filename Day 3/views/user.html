@@ -1,0 +1,86 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title">User </h2>
+    </div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <p id="firstName" class="form-control"><input type="text" ng-model="firstNameVar"/></p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="lastName">First Name:</label>
+                    <p id="lastName" class="form-control"><input type="text" ng-model="lastNameVar"/></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <p id="email" class="form-control"><input type="text" ng-model="emailVar"/></p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <p id="phoneNumber" class="form-control"><input type="text" ng-model="phoneNumberVar"/></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="CNP">CNP:</label>
+                    <p id="CNP" class="form-control"><input type="text" ng-model="CNPVar"/></p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="AGE">Age:</label>
+                    <p id="AGE" class="form-control"><input type="number" ng-model="ageVar"/></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-7">
+                <div class="container">
+                    <button class="btn btn-default" ng-click="back()">Back</button>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="container">
+                    <button class="btn btn-default" ng-click="resetFields()">Reset</button>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="container">
+                    <button class="btn btn-default" ng-click="saveUser()">Save</button>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="container">
+                    <button class="btn btn-default" ng-click="toggleDescriptionShow()">Show/Hide User List</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>{{title}}</h1>
+            <p class="lead" ng-show="showList">
+            <table class="table table-striped" role="menu">
+                <li ng-repeat="action in userList">
+                    {{action.firstName}} {{action.lastName}} {{action.CNP}}
+                </li>
+            </table>
+            </p>
+        </div>
+    </div>
+</div>

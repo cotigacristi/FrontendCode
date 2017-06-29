@@ -4,6 +4,8 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location','comm
 
         $scope.employees = []; // Employee list
 
+        //TODO #HR3 Load employee list from server using commonResourcesFactory
+
         $http.get(commonResourcesFactory.findAllEmployeesUrl)
             .success(function(data, status, headers, config) {
                 $scope.employees = data;
@@ -11,11 +13,6 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location','comm
             .error (function(data, status, headers, config){
                 alert("Error: " + status);
             });
-
-
-        //TODO #HR3 Load employee list from server using commonResourcesFactory
-
-
 
         $scope.viewEmployee = function (employeeId) {
             $location.url('/employeeview/' + employeeId);
