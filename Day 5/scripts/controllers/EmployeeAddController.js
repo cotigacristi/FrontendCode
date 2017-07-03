@@ -1,5 +1,5 @@
-hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'CommonResourcesFactory',
-    function($scope, $http, $location, CommonResourcesFactory) {
+hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'CommonResourcesFactory','EmployeeService',
+    function($scope, $http, $location, CommonResourcesFactory, EmployeeService) {
         $scope.employee = {};
         $scope.requiredErrorMessage = "Please fill out this form!";
         $scope.patternDateNotRespectedMessage = "The date format should be yyyy-mm-dd";
@@ -7,34 +7,37 @@ hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'Comm
 
         //TODO #HR1
 
-        $scope.departments;
-        $scope.managers;
-        $scope.jobs
+        $scope.departments = EmployeeService.getDepartmentsList();
+        $scope.managers = EmployeeService.getManagersList();
+        $scope.jobs = EmployeeService.getJobsList();
 
-        $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
-            .success(function(data, status, headers, config) {
-                $scope.departments = data;
-            })
-            .error (function(data, status, headers, config){
-                alert("Error: " + status);
-            });
+        // $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
+        //     .success(function(data, status, headers, config) {
+        //         $scope.departments = data;
+        //     })
+        //     .error (function(data, status, headers, config){
+        //         alert("Error: " + status);
+        //     });
+        //
+        // $http.get(CommonResourcesFactory.findAllEmployeesUrl)
+        //     .success(function(data, status, headers, config) {
+        //         $scope.managers = data;
+        //
+        //     })
+        //     .error (function(data, status, headers, config){
+        //         alert("Error: " + status);
+        //     });
+        //
+        // $http.get(CommonResourcesFactory.findAllJobsUrl)
+        //     .success(function(data, status, headers, config) {
+        //         $scope.jobs = data;
+        //     })
+        //     .error (function(data, status, headers, config){
+        //         alert("Error: " + status);
+        //     });
 
-        $http.get(CommonResourcesFactory.findAllEmployeesUrl)
-            .success(function(data, status, headers, config) {
-                $scope.managers = data;
 
-            })
-            .error (function(data, status, headers, config){
-                alert("Error: " + status);
-            });
 
-        $http.get(CommonResourcesFactory.findAllJobsUrl)
-            .success(function(data, status, headers, config) {
-                $scope.jobs = data;
-            })
-            .error (function(data, status, headers, config){
-                alert("Error: " + status);
-            });
         /**
          * Reset form
          */

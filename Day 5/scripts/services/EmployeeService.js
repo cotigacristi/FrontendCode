@@ -35,20 +35,34 @@ hrApp.service('EmployeeService', ['$http', 'CommonResourcesFactory', function ($
                 return $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
                     .success(function (data, status, headers, config) {
                         var returnData;
-                        var employee;
+                        var managersIds;
+                        var employeeId;
                         for(var each in data){
-                            if(each.managerId != null){
+                            if(data[each].managerId != null){
                                 var check = 0;
-                                if(returnData == null){
+                                if(managersIds == null){
                                     check = 0;
                                 }else {
-                                    for(var current in returnData){
-                                        if(current.employeeId == each.managerId.employeeId)
+                                    for(var current = 0; current < managersIds.length; current++){
+                                        if(managersIds[current] == data[each].managerId.employeeId){
+                                            check = 1;
+                                            break;
+                                        }
                                     }
+                                }
+                                if(check == 0){
+                                    employeeId = data[each].managerId.employeeId;
+                                    returnData.push(employeeId);
                                 }
                             }
                         }
-
+                        for(var current in managersIds){
+                            for(var each in data){
+                                if(managersIds[current] == each.eployeeId){
+                                    return data.push(data[each]);
+                                }
+                            }
+                        }
                     })
                     .error(function (data, status, headers, config) {
                         alert("Error: getManagersList" + status);
