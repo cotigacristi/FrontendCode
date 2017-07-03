@@ -7,6 +7,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
+                    <label for="firstName">First Name:</label>
+                    <!--<span id="firstName" class="form-control">{{employee.firstName}}</span>-->
+                    <input id="firstName" class="form-control" name="employeeFirstName" ng-model="employee.firstName"
+                           placeholder="First Name">
                     <div class="form-group" >
                         <!--TODO#HR2-->
 
@@ -14,6 +18,10 @@
                 </div>
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
+                    <label for="lastName">Last Name:</label>
+                    <!--<span id="lastName" class="form-control">{{employee.lastName}}</span>-->
+                    <input id="lastName" class="form-control" name="employeeLastName" ng-model="employee.lastName"
+                           placeholder="Last Name">
                     <div class="form-group">
                         <!--TODO#HR2-->
 
@@ -23,6 +31,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
+                    <label for="email">E-mail :</label>
+                    <!--<span id="email" class="form-control">{{employee.email}}</span>-->
+                    <input id="email" class="form-control" name="employeeEmail" ng-model="employee.email"
+                           placeholder="E-mail">
                     <div class="form-group">
                         <!--TODO#HR2-->
 
@@ -30,6 +42,10 @@
                 </div>
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
+                    <label for="phoneNumber">Phone Number :</label>
+                    <!--<span id="phoneNumber" class="form-control">{{employee.phoneNumber}}</span>-->
+                    <input id="phoneNumber" class="form-control" name="employeePhoneNumber" ng-model="employee.phoneNumber"
+                           placeholder="Phone Number">
                     <div class="form-group">
                         <!--TODO#HR2-->
 
@@ -37,6 +53,18 @@
                 </div>
             </div>
             <div class="row">
+
+                <div class="col-lg-6">
+                    <!--TODO#HR3-->
+                    <label for="salary">Salary :</label>
+                    <!--<span id="phoneNumber" class="form-control">{{employee.phoneNumber}}</span>-->
+                    <input id="salary" class="form-control" name="employeeSalary" ng-model="employee.salary"
+                           placeholder="Salary">
+                    <div class="form-group">
+                        <!--TODO#HR2-->
+
+                    </div>
+            </div>
                 <div class="col-lg-6">
                     <div class="form-group" ng-class="{ 'has-error': employeeAddForm.hireDate.$invalid && employeeAddForm.hireDate.$dirty }">
                         <label for="hireDate">Hire Date:</label>
@@ -48,23 +76,19 @@
                              && employeeAddForm.hireDate.$dirty">{{patternDateNotRespectedMessage}}</span>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <!--TODO#HR3-->
-                    <div class="form-group">
-                        <!--TODO#HR2-->
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <!--TODO#HR3-->
-                    <div class="form-group">
-                        <!--TODO#HR2-->
-
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.job.$invalid }" required>
+                        <label for="job">Job:</label>
+                        <select id="job" ng-model="employee.jobId" name="job" class="form-control" required
+                                ng-options="job.jobTitle for job in jobs track by job.jobId">
+                        </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.commissionPct.$invalid && employeeAddForm.commissionPct.$dirty }">
+                    <div class="form-group" ng-class="{ 'has-error':
+                    employeeAddForm.commissionPct.$invalid && employeeAddForm.commissionPct.$dirty }">
                         <label for="commissionPct">Commission:</label>
                         <input type="text" id="commissionPct" name="commissionPct" class="form-control" ng-model="employee.commissionPct"
                                placeholder="Commission" ng-pattern="commissionPattern" required>
@@ -78,12 +102,16 @@
             <div class="row">
                 <div class="col-lg-6">
                     <!--TODO#HR3-->
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.department.$invalid }" required>
+                        <label for="department">Department:</label>
+                        <select id="department" ng-model="employee.departmentId" name="department" class="form-control" required
+                                ng-options="department.departmentName for department in departments track by department.departmentId">
+                        </select>
                         <!--TODO#HR2-->
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.manager.$invalid }">
+                    <div class="form-group" ng-class="{ 'has-error': employeeAddForm.manager.$invalid }" required>
                         <label for="manager">Manager:</label>
                         <select id="manager" ng-model="employee.managerId" name="manager" class="form-control" required
                                 ng-options="manager.firstName+' '+ manager.lastName for manager in managers track by manager.employeeId">
@@ -92,7 +120,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-5"></div>
+                <div class="col-md-5">
+                    <a class="btn btn-primary btn-lg" role="button" ng-click="reset()">reset</a>
+                    <a class="btn btn-primary btn-lg" ng-disabled="employeeAddForm.$invalid" role="button" ng-click="create(employee)">save</a>
+                </div>
                 <div class="col-md-7">
                     <div class="container">
                         <!--TODO#HR4-->

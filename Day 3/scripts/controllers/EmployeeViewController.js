@@ -1,11 +1,11 @@
-hrApp.controller('EmployeeViewController', ['$scope', '$http', '$routeParams', '$location','commonResourcesFactory',
-    function($scope, $http, $routeParams, $location, commonResourcesFactory) {
+hrApp.controller('EmployeeViewController', ['$scope', '$http', '$routeParams', '$location','CommonResourcesFactory',
+    function($scope, $http, $routeParams, $location, CommonResourcesFactory) {
 
         $scope.employee = {};
 
         // TODO #HR6 get employee by id
 
-        $http.get(commonResourcesFactory.findOneEmployeeUrl + $routeParams.employeeid)
+        $http.get(CommonResourcesFactory.findOneEmployeeUrl + $routeParams.employeeid)
             .success(function(data, status, headers, config) {
                 $scope.employee = data;
             })

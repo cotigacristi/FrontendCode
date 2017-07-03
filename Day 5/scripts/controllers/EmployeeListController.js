@@ -59,4 +59,6 @@ hrApp.controller('EmployeeListController', ['$scope', '$http', '$location', 'Com
         $scope.editEmployee = function(employeeId) {
             $location.url('/employeeEdit/' + employeeId);
         };
+
+
     }]);

@@ -1,49 +1,32 @@
 hrApp.controller('EmployeeAddController', ['$scope', '$http', '$location', 'CommonResourcesFactory','EmployeeService',
     function($scope, $http, $location, CommonResourcesFactory, EmployeeService) {
         $scope.employee = {};
+        $scope.managers=[];
+        $scope.jobs=[];
+        $scope.departments=[];
         $scope.requiredErrorMessage = "Please fill out this form!";
         $scope.patternDateNotRespectedMessage = "The date format should be yyyy-mm-dd";
         $scope.patternCommisionNotRespectedMessage = "Commission should be in the format 0.XX";
 
         //TODO #HR1
 
-        $scope.departments = EmployeeService.getDepartmentsList();
-        $scope.managers = EmployeeService.getManagersList();
-        $scope.jobs = EmployeeService.getJobsList();
+        EmployeeService.getDepartmentsList().then(function (result) {
+            $scope.departments = result.data;
+        });
 
-        // $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
-        //     .success(function(data, status, headers, config) {
-        //         $scope.departments = data;
-        //     })
-        //     .error (function(data, status, headers, config){
-        //         alert("Error: " + status);
-        //     });
-        //
-        // $http.get(CommonResourcesFactory.findAllEmployeesUrl)
-        //     .success(function(data, status, headers, config) {
-        //         $scope.managers = data;
-        //
-        //     })
-        //     .error (function(data, status, headers, config){
-        //         alert("Error: " + status);
-        //     });
-        //
-        // $http.get(CommonResourcesFactory.findAllJobsUrl)
-        //     .success(function(data, status, headers, config) {
-        //         $scope.jobs = data;
-        //     })
-        //     .error (function(data, status, headers, config){
-        //         alert("Error: " + status);
-        //     });
+        EmployeeService.getJobsList().then(function (result) {
+            $scope.jobs = result.data;
+        });
 
 
-
-        /**
-         * Reset form
-         */
         $scope.reset = function () {
             this.employee = {};
-        };
+        }
+        EmployeeService.getManagersList().then(function (result) {
+            $scope.managers = EmployeeService.getManagersFromEmployeeList(result.data);
+        });
+
+
 
         /**
          * Persist an employee

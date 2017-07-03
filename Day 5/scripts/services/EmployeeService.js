@@ -32,37 +32,9 @@ hrApp.service('EmployeeService', ['$http', 'CommonResourcesFactory', function ($
                     });
             },
             getManagersList: function () {
-                return $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
+                return $http.get(CommonResourcesFactory.findAllEmployeesUrl)
                     .success(function (data, status, headers, config) {
-                        var returnData;
-                        var managersIds;
-                        var employeeId;
-                        for(var each in data){
-                            if(data[each].managerId != null){
-                                var check = 0;
-                                if(managersIds == null){
-                                    check = 0;
-                                }else {
-                                    for(var current = 0; current < managersIds.length; current++){
-                                        if(managersIds[current] == data[each].managerId.employeeId){
-                                            check = 1;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if(check == 0){
-                                    employeeId = data[each].managerId.employeeId;
-                                    returnData.push(employeeId);
-                                }
-                            }
-                        }
-                        for(var current in managersIds){
-                            for(var each in data){
-                                if(managersIds[current] == each.eployeeId){
-                                    return data.push(data[each]);
-                                }
-                            }
-                        }
+
                     })
                     .error(function (data, status, headers, config) {
                         alert("Error: getManagersList" + status);
@@ -70,7 +42,7 @@ hrApp.service('EmployeeService', ['$http', 'CommonResourcesFactory', function ($
                     });
             },
             getJobsList: function () {
-                return $http.get(CommonResourcesFactory.findAllDepartmentsUrl)
+                return $http.get(CommonResourcesFactory.findAllJobsUrl)
                     .success(function (data, status, headers, config) {
                         return data;
                     })
@@ -78,6 +50,18 @@ hrApp.service('EmployeeService', ['$http', 'CommonResourcesFactory', function ($
                         alert("Error: getJobsList" + status);
                         return "getJobsList ERROR!"
                     });
+            },
+            getManagersFromEmployeeList: function(data) {
+                var managerData = [];
+                var managersIds = {};
+                for(var each in data) {
+                    var manager = data[each].managerId;
+                    if (manager != null && managersIds[manager.employeeId] === undefined) {
+                        managersIds[manager.employeeId] = true;
+                        managerData.push(manager);
+                    }
+                }
+                return managerData;
             }
         }
     }]
